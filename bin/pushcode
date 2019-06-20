@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+
+const program = require("commander");
+const chalk = require("chalk");
+const push = require("../push");
+const reset = require("../reset");
+const os = require("os");
+const fs = require("fs");
+const path = require("path");
+
+let log = console.log;
+let warn = chalk.keyword("orange");
+
+/**
+ * option是命令行中的参数，这里我们其实可以让用户输入需要回滚的版本号
+ * 如果命令行式的输出 没有参数 option可以不写
+ */
+program
+  .command("push")
+  .description("推送代码")
+  .alias("P")
+  .action(push.bind(this));
+
+program
+  .command("delete")
+  .description("重置用户名密码")
+  .alias("D")
+  .action(() => {
+    fs.unlink(path.join(os.homedir(), ".pushcode_conf"), err => {
+      if (err) process.exit();
+      log(warn(`账户名、密码已重置`));
+    });
+  });
+
+// 支持tag回滚和commit回滚,根据命令行选择吧
+program
+  .command("reset")
+  .description("项目回滚")
+  .alias("R")
+  .action(() => {
+    reset()
+  })
+  .on("--help", function() {
+    log("");
+    log(warn("提示:"));
+    log(warn("  脚本提供三种回滚方式，回滚上一次提交，根据commitid回滚，根据tag回滚"));
+    log(warn("  请确保有强制提交代码的权限"));
+    log("");
+  });
+
+program.on("--help", function() {
+  log("");
+  log(warn("提示:"));
+  log(warn("  如果不输入任何命令，默认是自动化推动代码"));
+  log("");
+});
+
+// // 用户没有传任何参数，默认是自动化提交代码
+if (process.argv.length === 2) {
+  push();
+}
+program.parse(process.argv);

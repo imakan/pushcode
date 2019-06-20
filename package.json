@@ -1,0 +1,29 @@
+{
+  "name": "pushcode",
+  "version": "1.0.0",
+  "description": "自动化推动代码到远程仓库",
+  "bin": {
+    "pushcode": "./bin/pushcode"
+  },
+  "bugs": {
+    "url": "https://github.com/imakan/pushcode.git"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imakan/pushcode.git"
+  },
+  "keywords": [
+    "pushcode",
+    "node",
+    "shell",
+    "git"
+  ],
+  "author": "makan",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.20.0",
+    "inquirer": "^6.3.1",
+    "loading-cli": "^1.0.8"
+  }
+}
