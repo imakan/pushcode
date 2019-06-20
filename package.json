@@ -1,6 +1,6 @@
 {
   "name": "pushcode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "自动化推动代码到远程仓库",
   "bin": {
     "pushcode": "./bin/pushcode"

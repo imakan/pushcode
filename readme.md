@@ -8,9 +8,9 @@
 # 安装
 
 ```javascript
-yarn add @sina/pushcode
+yarn add pushcode
 // or
-npm install @sina/pushcode
+npm install pushcode
 ```
 
 

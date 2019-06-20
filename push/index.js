@@ -54,10 +54,9 @@ let editIgnore = async (relovePath, currentBranch) => {
       let content = chunk.toString();
       if (currentBranch == dev_branch) {
         // 测试环境修改.gitignore文件,推送node_modules
-        content = content.replace(/node_modules/g, "makan@staff.sina.com.cn");
+        content = content.replace(/node_modules/g, "xxxx");
       } else if (currentBranch == preonline_branch) {
         // 预上线环境修改.gitignore文件,推送node_modules，同时将dockerFile文件忽略掉
-        // content = content.replace(/node_modules/g, "makan@staff.sina.com.cn");
       } else if (currentBranch == online_branch) {
         // 线上环境修改.gitignore文件,推送node_modules，同时将set-up文件忽略掉
         content = content.replace(/node_modules/g, "set-up");
